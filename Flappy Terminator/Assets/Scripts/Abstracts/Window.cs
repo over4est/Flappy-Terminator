@@ -10,22 +10,6 @@ public abstract class Window : MonoBehaviour
 
     public abstract event Action ButtonClicked;
 
-    public void Close()
-    {
-        _canvasGroup.alpha = 0f;
-        _canvasGroup.blocksRaycasts = false;
-        _button.interactable = false;
-    }
-
-    public void Open()
-    {
-        _canvasGroup.alpha = 1f;
-        _canvasGroup.blocksRaycasts = true;
-        _button.interactable = true;
-    }
-
-    protected abstract void ActionOnClick();
-
     private void Awake()
     {
         _button = GetComponentInChildren<Button>();
@@ -41,4 +25,20 @@ public abstract class Window : MonoBehaviour
     {
         _button.onClick.RemoveListener(ActionOnClick);
     }
+
+    public void Close()
+    {
+        _canvasGroup.alpha = 0f;
+        _canvasGroup.blocksRaycasts = false;
+        _button.interactable = false;
+    }
+
+    public void Open()
+    {
+        _canvasGroup.alpha = 1f;
+        _canvasGroup.blocksRaycasts = true;
+        _button.interactable = true;
+    }
+
+    protected abstract void ActionOnClick();
 }

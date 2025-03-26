@@ -6,10 +6,10 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private int _yOffset;
-    [SerializeField] private Enemy _prefab;
+    [SerializeField] private Enemy _enemyPrefab;
     [SerializeField] private int _enemyCount;
 
-    private ObjectPool<Enemy> _pool;
+    private ObjectPool<Enemy> _enemyPool;
     private List<Enemy> _enemies;
     private EnemySpawnTimer _timer;
     private ScoreCounter _scoreCounter;
@@ -19,7 +19,7 @@ public class EnemySpawner : MonoBehaviour
         foreach (Enemy enemy in _enemies)
             enemy.Reset();
 
-        _pool.ReleaseAll();
+        _enemyPool.ReleaseAll();
         _scoreCounter.Reset();
     }
 
@@ -27,8 +27,8 @@ public class EnemySpawner : MonoBehaviour
     {
         _scoreCounter = GetComponent<ScoreCounter>();
         _timer = GetComponent<EnemySpawnTimer>();
-        _pool = new ObjectPool<Enemy>(_prefab, _enemyCount, transform);
-        _enemies = _pool.GetAllObjects();
+        _enemyPool = new ObjectPool<Enemy>(_enemyPrefab, _enemyCount, transform);
+        _enemies = _enemyPool.GetAllObjects();
     }
 
     private void Start()
@@ -52,7 +52,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Spawn()
     {
-        if (_pool.TryGet(out Enemy enemy))
+        if (_enemyPool.TryGet(out Enemy enemy))
         {
             float randomYOffset = Random.Range(-_yOffset, _yOffset);
 
@@ -62,7 +62,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Release(Enemy enemy)
     {
-        _pool.Release(enemy);
+        _enemyPool.Release(enemy);
     }
 
     private void EnemySubscribe(List<Enemy> objects)

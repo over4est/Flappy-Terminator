@@ -9,22 +9,6 @@ public class Enemy : Character, IInteractable
     public event Action<Enemy> DispawnNeeded;
     public event Action Killed;
 
-    public override void Attack()
-    {
-        _enemyAttacker.Attack();
-    }
-
-    public override void TakeDamage()
-    {
-        DispawnNeeded?.Invoke(this);
-    }
-
-    public override void Reset()
-    {
-        if (_enemyAttacker != null)
-            _enemyAttacker.Reset();
-    }
-
     private void Start()
     {
         _enemyAttacker = GetComponent<EnemyAttacker>();
@@ -43,6 +27,22 @@ public class Enemy : Character, IInteractable
     private void OnDisable()
     {
         CollisionHandler.CollisionDetected -= ProcessCollision;
+    }
+
+    public override void Attack()
+    {
+        _enemyAttacker.Attack();
+    }
+
+    public override void TakeDamage()
+    {
+        DispawnNeeded?.Invoke(this);
+    }
+
+    public override void Reset()
+    {
+        if (_enemyAttacker != null)
+            _enemyAttacker.Reset();
     }
 
     private void ProcessCollision(IInteractable obj)

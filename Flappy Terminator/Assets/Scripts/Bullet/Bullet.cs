@@ -14,11 +14,6 @@ public class Bullet : MonoBehaviour, IInteractable
     public Rigidbody2D Rigidbody => _rigidbody;
     public float StartSpeed => _startSpeed;
 
-    private void ProcessCollision(IInteractable _)
-    {
-        DispawnNeeded?.Invoke(this);
-    }
-
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -33,5 +28,10 @@ public class Bullet : MonoBehaviour, IInteractable
     private void OnDisable()
     {
         _collisionHandler.CollisionDetected -= ProcessCollision;
+    }
+
+    private void ProcessCollision(IInteractable _)
+    {
+        DispawnNeeded?.Invoke(this);
     }
 }

@@ -11,16 +11,6 @@ public class InputReader : MonoBehaviour
     public event Action MoveButtonPressed;
     public event Action AttackButtonPressed;
 
-    public void SetGameStarted()
-    {
-        _isGameStarted = true;
-    }
-
-    public void SetGameEnded()
-    {
-        _isGameStarted = false;
-    }
-
     private void Update()
     {
         if (_isGameStarted)
@@ -35,5 +25,15 @@ public class InputReader : MonoBehaviour
                 AttackButtonPressed?.Invoke();
             }
         }
+    }
+
+    public void SetGameStarted()
+    {
+        _isGameStarted = true;
+    }
+
+    public void SetGameEnded()
+    {
+        _isGameStarted = false;
     }
 }

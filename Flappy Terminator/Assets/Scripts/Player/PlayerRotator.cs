@@ -9,16 +9,6 @@ public class PlayerRotator : MonoBehaviour
     private Quaternion _maxRotation;
     private Quaternion _minRotation;
 
-    public void Reset()
-    {
-
-    }
-
-    public void RotateToMax()
-    {
-        transform.rotation = _maxRotation;
-    }
-
     private void Update()
     {
         Rotate();
@@ -28,6 +18,11 @@ public class PlayerRotator : MonoBehaviour
     {
         _minRotation = Quaternion.Euler(0f, 0f, _minRotationZ);
         _maxRotation = Quaternion.Euler(0f, 0f, _maxRotationZ);
+    }
+
+    public void RotateToMax()
+    {
+        transform.rotation = _maxRotation;
     }
 
     private void Rotate()

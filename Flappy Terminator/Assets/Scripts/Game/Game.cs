@@ -21,19 +21,19 @@ public class Game : MonoBehaviour
         _player.GameOver -= OnGameOver;
     }
 
+    private void Start()
+    {
+        Time.timeScale = 0f;
+
+        _startScreen.Open();
+    }
+
     private void StartGame()
     {
         Time.timeScale = 1;
 
         _enemySpawner.Reset();
         _player.Reset();
-    }
-
-    private void Start()
-    {
-        Time.timeScale = 0f;
-
-        _startScreen.Open();
     }
 
     private void OnPlayButtonClick()
