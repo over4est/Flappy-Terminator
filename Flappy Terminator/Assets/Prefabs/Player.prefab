@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: -9103802141345789241}
   - component: {fileID: 3772118005488534123}
   - component: {fileID: 4598481469483054136}
-  - component: {fileID: 8527353883884728777}
+  - component: {fileID: 2910704871083758641}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -242,7 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48391fa1a69c24c4c8eda2fd40bf8516, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8527353883884728777
+--- !u!114 &2910704871083758641
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -251,14 +251,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2060473317323923828}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d31a6a21fdc363f43befbfeaba052747, type: 3}
+  m_Script: {fileID: 11500000, guid: 40b2008c123313d43991b19f9141eedd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 2577750266104869368, guid: 667f6f687ff031e44ae4dc6e25b2c192, type: 3}
-  _bulletAmount: 5
   _attackPoint: {fileID: 160555020114320963}
-  _reloadTime: 1
-  _container: {fileID: 0}
+  _reloadTime: 0.5
 --- !u!1 &5680197108871927311
 GameObject:
   m_ObjectHideFlags: 0

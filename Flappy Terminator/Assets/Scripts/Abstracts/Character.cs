@@ -1,21 +1,21 @@
 using UnityEngine;
 
-[RequireComponent(typeof(CollisionHandler))]
-public abstract class Character : MonoBehaviour, IDamageable
+[RequireComponent(typeof(CollisionHandler), typeof (Attacker))]
+public abstract class Character : MonoBehaviour
 {
     private CollisionHandler _collisionHandler;
+    private Attacker _attacker;
 
     protected CollisionHandler CollisionHandler => _collisionHandler;
+    protected Attacker Attacker => _attacker; 
 
     public abstract void Reset();
 
-    private void Awake()
+    protected void Awake()
     {
         _collisionHandler = GetComponent<CollisionHandler>();
+        _attacker = GetComponent<Attacker>();
     }
 
-    public abstract void TakeDamage();
-
     public abstract void Attack();
-
 }

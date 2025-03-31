@@ -3,12 +3,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(CanvasGroup))]
-public abstract class Window : MonoBehaviour
+public class Window : MonoBehaviour
 {
     private CanvasGroup _canvasGroup;
     private Button _button;
 
-    public abstract event Action ButtonClicked;
+    public event Action ButtonClicked;
 
     private void Awake()
     {
@@ -40,5 +40,8 @@ public abstract class Window : MonoBehaviour
         _button.interactable = true;
     }
 
-    protected abstract void ActionOnClick();
+    private void ActionOnClick()
+    {
+        ButtonClicked?.Invoke();
+    }
 }

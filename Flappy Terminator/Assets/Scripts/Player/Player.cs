@@ -2,7 +2,6 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(InputReader), typeof(PlayerMover), typeof(PlayerRotator))]
-[RequireComponent(typeof(PlayerAttacker))]
 public class Player : Character
 {
     public event Action GameOver;
@@ -10,23 +9,28 @@ public class Player : Character
     private InputReader _inputReader;
     private PlayerMover _playerMover;
     private PlayerRotator _playerRotator;
-    private PlayerAttacker _attacker;
 
     public override void Reset()
     {
         _inputReader.SetGameStarted();
         _playerMover.Reset();
-        _attacker.Reset();
+        Attacker.Reset();
     }
 
-    private void Start()
+    private new void Awake()
     {
         _inputReader = GetComponent<InputReader>();
         _playerMover = GetComponent<PlayerMover>();
         _playerRotator = GetComponent<PlayerRotator>();
-        _attacker = GetComponent<PlayerAttacker>();
 
-        Subscribe();
+        base.Awake();
+    }
+
+    private void OnEnable()
+    {
+        _inputReader.AttackButtonPressed += Attack;
+        _inputReader.MoveButtonPressed += Move;
+        CollisionHandler.CollisionDetected += ProcessCollision;
     }
 
     private void OnDisable()
@@ -36,14 +40,9 @@ public class Player : Character
         CollisionHandler.CollisionDetected -= ProcessCollision;
     }
 
-    public override void TakeDamage()
-    {
-        GameOver?.Invoke();
-    }
-
     public override void Attack()
     {
-        _attacker.Attack();
+        Attacker.Attack();
     }
 
     public void DisableInput()
@@ -59,14 +58,9 @@ public class Player : Character
 
     private void ProcessCollision(IInteractable obj)
     {
-        if (obj is Ground || obj is Sky || obj is Enemy || obj is Bullet)
-            GameOver?.Invoke();
-    }
+        if (obj is DispawnZone)
+            return;
 
-    private void Subscribe()
-    {
-        _inputReader.AttackButtonPressed += Attack;
-        _inputReader.MoveButtonPressed += Move;
-        CollisionHandler.CollisionDetected += ProcessCollision;
+        GameOver?.Invoke();
     }
 }

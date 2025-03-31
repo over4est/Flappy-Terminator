@@ -1,18 +1,9 @@
 using System;
-using UnityEngine;
 
-[RequireComponent(typeof(EnemyAttacker))]
 public class Enemy : Character, IInteractable
 {
-    private EnemyAttacker _enemyAttacker;
-
     public event Action<Enemy> DispawnNeeded;
     public event Action Killed;
-
-    private void Start()
-    {
-        _enemyAttacker = GetComponent<EnemyAttacker>();
-    }
 
     private void Update()
     {
@@ -31,18 +22,13 @@ public class Enemy : Character, IInteractable
 
     public override void Attack()
     {
-        _enemyAttacker.Attack();
-    }
-
-    public override void TakeDamage()
-    {
-        DispawnNeeded?.Invoke(this);
+        Attacker.Attack();
     }
 
     public override void Reset()
     {
-        if (_enemyAttacker != null)
-            _enemyAttacker.Reset();
+        if (Attacker != null)
+            Attacker.Reset();
     }
 
     private void ProcessCollision(IInteractable obj)

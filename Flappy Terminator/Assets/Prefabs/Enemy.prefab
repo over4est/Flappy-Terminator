@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6199085550656652740}
   - component: {fileID: 1645630439899841086}
   - component: {fileID: 5607026358622531600}
-  - component: {fileID: 2346433141513958265}
+  - component: {fileID: 2206644411205729379}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48391fa1a69c24c4c8eda2fd40bf8516, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2346433141513958265
+--- !u!114 &2206644411205729379
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -217,11 +217,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 963489911008565740}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b153bc478e605d94cb2d909936b9415b, type: 3}
+  m_Script: {fileID: 11500000, guid: 40b2008c123313d43991b19f9141eedd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 2577750266104869368, guid: 667f6f687ff031e44ae4dc6e25b2c192, type: 3}
-  _bulletAmount: 5
   _attackPoint: {fileID: 4081586616472262661}
   _reloadTime: 1
 --- !u!1 &1041270397816829685
