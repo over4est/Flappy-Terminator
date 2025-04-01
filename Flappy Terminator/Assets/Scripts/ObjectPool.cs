@@ -13,7 +13,7 @@ public class ObjectPool<T> where T : MonoBehaviour
         _prefab = prefab;
         _conteiner = container;
 
-        CreatePool(objectCount);
+        InitPool(objectCount);
     }
 
     public bool TryGet(out T obj)
@@ -53,7 +53,7 @@ public class ObjectPool<T> where T : MonoBehaviour
         }
     }
 
-    private void CreatePool(int count)
+    private void InitPool(int count)
     {
         _pool = new Stack<T>();
 

@@ -9,13 +9,6 @@ public class PlayerMover : MonoBehaviour
     private Rigidbody2D _rigidbody;
     private Vector3 _startPosition;
 
-    public void Reset()
-    {
-        transform.position = _startPosition;
-        transform.rotation = Quaternion.identity;
-        _rigidbody.velocity = Vector2.zero;
-    }
-
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -24,6 +17,13 @@ public class PlayerMover : MonoBehaviour
     private void Start()
     {
         _startPosition = transform.position;
+    }
+
+    public void Reset()
+    {
+        transform.position = _startPosition;
+        transform.rotation = Quaternion.identity;
+        _rigidbody.velocity = Vector2.zero;
     }
 
     public void Move()

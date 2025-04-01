@@ -14,15 +14,6 @@ public class EnemySpawner : MonoBehaviour
     private EnemySpawnTimer _timer;
     private ScoreCounter _scoreCounter;
 
-    public void Reset()
-    {
-        foreach (Enemy enemy in _enemies)
-            enemy.Reset();
-
-        _enemyPool.ReleaseAll();
-        _scoreCounter.Reset();
-    }
-
     private void Awake()
     {
         _scoreCounter = GetComponent<ScoreCounter>();
@@ -48,6 +39,15 @@ public class EnemySpawner : MonoBehaviour
         EnemyUnsubscribe(_enemies);
 
         _timer.TimerTicked -= Spawn;
+    }
+
+    public void Reset()
+    {
+        foreach (Enemy enemy in _enemies)
+            enemy.Reset();
+
+        _enemyPool.ReleaseAll();
+        _scoreCounter.Reset();
     }
 
     private void Spawn()

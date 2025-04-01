@@ -4,18 +4,11 @@ using UnityEngine;
 [RequireComponent(typeof(InputReader), typeof(PlayerMover), typeof(PlayerRotator))]
 public class Player : Character
 {
-    public event Action GameOver;
-
     private InputReader _inputReader;
     private PlayerMover _playerMover;
     private PlayerRotator _playerRotator;
 
-    public override void Reset()
-    {
-        _inputReader.SetGameStarted();
-        _playerMover.Reset();
-        Attacker.Reset();
-    }
+    public event Action GameOver;
 
     private new void Awake()
     {
@@ -38,6 +31,13 @@ public class Player : Character
         _inputReader.AttackButtonPressed -= Attack;
         _inputReader.MoveButtonPressed -= Move;
         CollisionHandler.CollisionDetected -= ProcessCollision;
+    }
+
+    public override void Reset()
+    {
+        _inputReader.SetGameStarted();
+        _playerMover.Reset();
+        Attacker.Reset();
     }
 
     public override void Attack()

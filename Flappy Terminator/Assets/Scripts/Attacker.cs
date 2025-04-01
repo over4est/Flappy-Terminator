@@ -11,14 +11,6 @@ public class Attacker : MonoBehaviour
     private bool _isReloaded;
     private BulletContainer _bulletContainer;
 
-    public void Reset()
-    {
-        if (_pool != null)
-        {
-            _pool.ReleaseAll();
-        }
-    }
-
     private void Awake()
     {
         _bulletContainer = GetComponentInParent<BulletContainer>();
@@ -33,6 +25,14 @@ public class Attacker : MonoBehaviour
     private void OnEnable()
     {
         _isReloaded = true;
+    }
+
+    public void Reset()
+    {
+        if (_pool != null)
+        {
+            _pool.ReleaseAll();
+        }
     }
 
     public void Attack()
